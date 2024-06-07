@@ -29,6 +29,9 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $category = null;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?Category $Category = null;
+
     public function getId(): ?int
     {
         return $this->id;
