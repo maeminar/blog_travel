@@ -3,16 +3,20 @@
 {% block title %}Articles voyage{% endblock %}
 
 {% block body %}
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-12">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-gray-800 my-8">🌏 Tous les articles 🌏</h1>
+  </div>
 
-<p>coucou</p>
-<div class="text-center">
-<h1>Tous les articles de voyage : </h1>
+  <ul class="grid gap-8 mx-auto max-w-screen-md px-4">
+    {% for article in articles %}
+      <li class="bg-white rounded-lg shadow-lg p-6">
+        <p class="text-gray-500 text-sm mb-2">Catégorie : <span class="text-blue-600 font-medium">{{ article.category.name }}</span></p>
+        <h2 class="text-2xl lg:text-3xl font-semibold text-center mb-4">{{ article.name }}</h2>
+        <p class="text-gray-700 mt-2 mb-4">{{ article.content }}</p>
+        <p class="text-gray-500 text-sm mt-4">Publié le {{ article.createdAt|date('d/m/Y') }}</p>
+      </li>
+    {% endfor %}
+  </ul>
 </div>
-
-<ul>
-  {% for article in articles %}
-    <li>{{ article.name }}</li>
-  {% endfor %}
-</ul>
-
 {% endblock %}

@@ -89,7 +89,7 @@ class Article
 
     public function setCategory(?Category $Category): static
     {
-        $this->category = $Category;
+        $this->Category = $Category;
 
         return $this;
     }

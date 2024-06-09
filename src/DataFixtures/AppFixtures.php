@@ -7,6 +7,7 @@ use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use DateTimeImmutable;
+use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
