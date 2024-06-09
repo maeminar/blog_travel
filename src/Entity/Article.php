@@ -29,6 +29,9 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?Category $Category = null;
 
+    #[ORM\Column(length: 255)]
+    private $imageUrl;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Article
     public function setCategory(?Category $Category): static
     {
         $this->Category = $Category;
+
+        return $this;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(?string $imageUrl): self
+    {
+        $this->imageUrl = $imageUrl;
 
         return $this;
     }

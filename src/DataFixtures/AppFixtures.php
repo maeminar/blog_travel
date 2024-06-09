@@ -35,7 +35,8 @@ class AppFixtures extends Fixture
                 ->setContent($faker->realTextBetween(1200, 2500))
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-6 years')))
                 ->setVisible($faker->boolean(90))
-                ->setCategory($faker->randomElement($categories)); //Obligatoire pour ajouter un ID aléatoire dans ma table 
+                ->setCategory($faker->randomElement($categories)) //Obligatoire pour ajouter un ID aléatoire dans ma table 
+                ->setImageUrl($faker->imageUrl(640, 480, true, 'travel'));
 
             $manager->persist($article);
         }
