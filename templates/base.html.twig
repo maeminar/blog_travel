@@ -7,18 +7,22 @@
         {% block stylesheets %}
         {% endblock %}
 
+        {# Include ma Navbar #}
+        {% block navbar %}
+            {{include ('navbar.html.twig')}}
+        {% endblock %}
+
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
 
-    </head> 
+        <p>coucou</p>
+    </head>
     <body>
-        {% block body %}
 
-        {# {% block navbar %}
-        {% include 'navbar.html.twig'%}
-        {% endblock %} #}
-
-        {% endblock %}
     </body>
+        {# Include mon footer #}
+        {# {% block footer %}
+            {{include ('footer.html.twig')}}
+        {% endblock %} #}
 </html>

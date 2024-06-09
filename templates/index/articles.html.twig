@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles voyage{% endblock %}
+
+{% block body %}
+
+<p>coucou</p>
+<div class="text-center">
+<h1>Tous les articles de voyage : </h1>
+</div>
+
+<ul>
+  {% for article in articles %}
+    <li>{{ article.name }}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

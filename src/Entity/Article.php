@@ -26,9 +26,6 @@ class Article
     #[ORM\Column]
     private ?bool $visible = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $category = null;
-
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?Category $Category = null;
 
@@ -85,14 +82,14 @@ class Article
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?Category
     {
-        return $this->category;
+        return $this->Category;
     }
 
-    public function setCategory(string $category): static
+    public function setCategory(?Category $Category): static
     {
-        $this->category = $category;
+        $this->category = $Category;
 
         return $this;
     }

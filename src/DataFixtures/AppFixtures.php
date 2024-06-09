@@ -30,11 +30,11 @@ class AppFixtures extends Fixture
         {
             $article = new Article();
             $article
-                //->setCategory($faker->randomElement($categories))// Obligatoire pour ajouter un ID aléatoire dans ma table 
                 ->setName($faker->words($faker->numberBetween(15, 25), true))
                 ->setContent($faker->realTextBetween(1200, 2500))
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-6 years')))
-                ->setVisible($faker->boolean(90));
+                ->setVisible($faker->boolean(90))
+                ->setCategory($faker->randomElement($categories)); //Obligatoire pour ajouter un ID aléatoire dans ma table 
 
             $manager->persist($article);
         }
