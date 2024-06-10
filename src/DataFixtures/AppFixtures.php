@@ -15,7 +15,7 @@ class AppFixtures extends Fixture
     private const CATEGORIES = ["Histoires de voyageurs","Inspirations de voyage","Culture et patrimoine","Aventure et plein air", "En solo", "Budget et finances", "Voyager de manière durable"];
     public function load(ObjectManager $manager): void
     {
-        $faker = \Faker\Factory::create(locale:'fr_FR');
+        $faker = Factory::create(locale:'fr_FR');
 
         $categories = [];
 
