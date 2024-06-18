@@ -1,23 +1,23 @@
-<nav class="flex items-center justify-between bg-black dark:bg-gray-600 py-3">
-  <!-- Logo -->
-  <img src="{{ asset('images/logo_planete.png') }}" alt="Logo de votre site" class="h-8 w-auto ml-4">
+<nav class="flex items-center justify-between bg-gray-900 py-3">
+    <!-- Logo -->
+    <img src="{{ asset('images/logo_planete.png') }}" alt="Logo de votre site" class="h-8 w-auto ml-4">
 
-  <!-- Titre du site -->
-  <a href="{{ path('app_index') }}"  class="text-white font-bold">Illay travel</a>
+    <!-- Titre du site -->
+    <a href="{{ path('app_index') }}" class="text-white text-2xl font-bold uppercase">Illay travel</a>
 
-  <!-- Liste des liens -->
-  <ul class="flex flex-col md:flex-row items-center gap-y-3 gap-x-4 md:justify-center text-white">
-    <li class="m-4">
-      <a href="{{ path('app_index') }}">Accueil</a>
-    </li>
-    <li class="m-4">
-      <a href="{{ path('app_articles') }}">Articles</a>
-    </li>
-    <li class="m-4">
-      <a href="{{ path('categories_list_cat') }}">Catégories</a>
-    </li>
-    <li class="m-4">
-      <a href="}">À propos</a>
-    </li>
-  </ul>
+    <!-- Liste des liens -->
+    <ul class="flex flex-col md:flex-row items-center gap-4 md:gap-8 md:ml-auto text-white">
+        <li class="mx-4">
+            <a href="{{ path('app_index') }}" class="hover:text-gray-300">Accueil</a>
+        </li>
+        <li class="mx-4">
+            <a href="{{ path('app_articles') }}" class="hover:text-gray-300">Articles</a>
+        </li>
+        <li class="mx-4">
+            <a href="{{ path('categories_list_cat') }}" class="hover:text-gray-300">Catégories</a>
+        </li>
+        <li class="mx-4">
+            <a href="{{ path('app_login') }}" class="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-lg transition duration-300">Connexion</a>
+        </li>
+    </ul>
 </nav>

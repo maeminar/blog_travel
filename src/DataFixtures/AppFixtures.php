@@ -4,13 +4,18 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use DateTimeImmutable;
 use Faker\Factory;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    public function __construct(private UserPasswordHasherInterface $hasher) // Injection du service de hachage de mot de passe en utilisant l'interface 
+  {
+  }
     private const NB_ARTICLES = 15;
     private const CATEGORIES = ["Histoires de voyageurs","Inspirations de voyage","Culture et patrimoine","Aventure et plein air", "En solo", "Budget et finances", "Voyager de manière durable"];
     public function load(ObjectManager $manager): void
@@ -40,6 +45,22 @@ class AppFixtures extends Fixture
 
             $manager->persist($article);
         }
-            $manager->flush();
+
+        $ordinaryUser = new User();
+        $ordinaryUser
+          ->setEmail('testordinaryuser@illay.com')
+          ->setPassword($this->hasher->hashPassword($ordinaryUser, 'ordinary'));
+      
+        $manager->persist($ordinaryUser);
+      
+        $adminUser = new User();
+        $adminUser
+          ->setEmail('admin@illay.com')
+          ->setRoles(['ROLE_ADMIN'])
+          ->setPassword($this->hasher->hashPassword($adminUser, 'admin'));
+      
+        $manager->persist($adminUser);
+
+        $manager->flush();
     }
 }
