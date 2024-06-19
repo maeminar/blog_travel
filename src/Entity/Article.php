@@ -30,8 +30,15 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $Category = null;
 
+    #[ORM\ManyToOne(targetEntity: Transport::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $Transport;
+
     #[ORM\Column(length: 255)]
     private $imageUrl;
+
+    #[ORM\Column]
+    private ?int $distance = null;
 
     public function getId(): ?int
     {
@@ -106,6 +113,47 @@ class Article
     public function setImageUrl(?string $imageUrl): self
     {
         $this->imageUrl = $imageUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of distance
+     */ 
+    public function getDistance()
+    {
+        return $this->distance;
+    }
+
+    /**
+     * Set the value of distance
+     *
+     * @return  self
+     */ 
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Transport
+     */ 
+    public function getTransport(): ?Transport
+    {
+        return $this->Transport;
+    }
+
+    /**
+     * Set the value of Transport
+     *
+     * @return  self
+     */ 
+    public function setTransport(?Transport $transport): self
+    {
+        $this->Transport = $transport;
 
         return $this;
     }

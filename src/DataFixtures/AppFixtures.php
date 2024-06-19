@@ -4,11 +4,13 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Transport;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use DateTimeImmutable;
 use Faker\Factory;
+use Symfony\Component\Messenger\Command\SetupTransportsCommand;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
@@ -18,11 +20,14 @@ class AppFixtures extends Fixture
   }
     private const NB_ARTICLES = 10;
     private const CATEGORIES = ["Histoires de voyageurs","Inspirations de voyage","Culture et patrimoine","Aventure et plein air", "En solo", "Budget et finances", "Voyager de manière durable"];
+    private const TRANSPORTS = ["Avion", "Voiture", "Bateau", "Vélo"];
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create(locale:'fr_FR');
 
         $categories = [];
+        $transports = [];
 
         foreach (self::CATEGORIES as $categoryName) {
             $category = new Category();
@@ -31,6 +36,14 @@ class AppFixtures extends Fixture
             $manager->persist($category);
             $categories[] = $category;
         }
+
+        foreach (self::TRANSPORTS as $transportName) {
+          $transport = new Transport();
+          $transport->setName($transportName);
+
+          $manager->persist($transport);
+          $transports[] = $transport;
+      }
 
         for ($i = 0; $i < self::NB_ARTICLES; $i++) 
         {
@@ -41,7 +54,9 @@ class AppFixtures extends Fixture
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-6 years')))
                 ->setVisible($faker->boolean(90))
                 ->setCategory($faker->randomElement($categories)) //Obligatoire pour ajouter un ID aléatoire dans ma table 
-                ->setImageUrl('/uploads/images/image' . ($i % 9) . '.jpg'); // Exemple de chemin d'image
+                ->setImageUrl('/uploads/images/image' . ($i % 9) . '.jpg') // Chemin de l'image
+                ->setTransport($faker->randomElement($transports))
+                ->setDistance($faker->randomFloat(2, 10, 10000));
 
             $manager->persist($article);
         }

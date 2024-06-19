@@ -6,9 +6,11 @@ use App\Entity\Article;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -28,8 +30,11 @@ class ArticleCrudController extends AbstractCrudController
             DateTimeField::new('created_at'),
             BooleanField::new('visible'),
             ImageField::new('imageUrl')
-                ->setUploadDir('public/uploads/images/') // Répertoire d'upload
-                ->setBasePath('/uploads/images/'),
+                ->setUploadDir('public/uploads/images/') 
+                ->setBasePath('/uploads/images/')
+                ->setUploadedFileNamePattern('uploads/images/'),
+            AssociationField::new('transport')->autocomplete(),
+            IntegerField::new('distance'),
             AssociationField::new('Category')->autocomplete()
         ];
     }

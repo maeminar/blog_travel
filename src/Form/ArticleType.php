@@ -25,6 +25,8 @@ class ArticleType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'id',
             ])
+            ->add('transport')
+            ->add('distance')
         ;
     }
 
