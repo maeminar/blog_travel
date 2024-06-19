@@ -27,6 +27,7 @@ class Article
     private ?bool $visible = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Category $Category = null;
 
     #[ORM\Column(length: 255)]

@@ -16,7 +16,7 @@ class AppFixtures extends Fixture
     public function __construct(private UserPasswordHasherInterface $hasher) // Injection du service de hachage de mot de passe en utilisant l'interface 
   {
   }
-    private const NB_ARTICLES = 15;
+    private const NB_ARTICLES = 10;
     private const CATEGORIES = ["Histoires de voyageurs","Inspirations de voyage","Culture et patrimoine","Aventure et plein air", "En solo", "Budget et finances", "Voyager de manière durable"];
     public function load(ObjectManager $manager): void
     {
@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-6 years')))
                 ->setVisible($faker->boolean(90))
                 ->setCategory($faker->randomElement($categories)) //Obligatoire pour ajouter un ID aléatoire dans ma table 
-                ->setImageUrl($faker->imageUrl(640, 480, true, 'travel'));
+                ->setImageUrl('/uploads/images/image' . ($i % 9) . '.jpg'); // Exemple de chemin d'image
 
             $manager->persist($article);
         }

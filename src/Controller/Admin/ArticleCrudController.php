@@ -22,13 +22,15 @@ class ArticleCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->hideOnForm(),
             TextField::new('name'),
             TextEditorField::new('content'),
             DateTimeField::new('created_at'),
             BooleanField::new('visible'),
-            AssociationField::new('category')->autocomplete(),
-            ImageField::new('imageUrl'),
+            ImageField::new('imageUrl')
+                ->setUploadDir('public/uploads/images/') // Répertoire d'upload
+                ->setBasePath('/uploads/images/'),
+            AssociationField::new('Category')->autocomplete()
         ];
     }
 
