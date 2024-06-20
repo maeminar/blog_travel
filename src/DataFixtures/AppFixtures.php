@@ -21,6 +21,11 @@ class AppFixtures extends Fixture
     private const NB_ARTICLES = 10;
     private const CATEGORIES = ["Histoires de voyageurs","Inspirations de voyage","Culture et patrimoine","Aventure et plein air", "En solo", "Budget et finances", "Voyager de manière durable"];
     private const TRANSPORTS = ["Avion", "Voiture", "Bateau", "Vélo"];
+    private const EMISSION_FACTORS = [
+      'Avion' => 255,
+      'Voiture' => 180,
+      'Bateau' => 200,
+      'Vélo' => 0];
 
     public function load(ObjectManager $manager): void
     {
@@ -41,7 +46,7 @@ class AppFixtures extends Fixture
           $transport = new Transport();
           $transport
               ->setName($transportName)
-              ->setEmissionFactor($faker->randomFloat(2, 50, 100)); // Facteur d'émission aléatoire entre 50 et 100
+              ->setEmissionFactor(self::EMISSION_FACTORS[$transportName]);
 
           $manager->persist($transport);
           $transports[] = $transport;

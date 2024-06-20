@@ -25,7 +25,7 @@ class Transport
     private ?string $name = null;
 
     #[ORM\Column(type: 'integer')]
-    private ?int $emissionFactor = null; //en g par CO2/km
+    private ?int $emissionFactor = 0; //en g par CO2/km
 
     public function __construct()
     {
