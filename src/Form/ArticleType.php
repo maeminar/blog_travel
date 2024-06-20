@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,6 +28,10 @@ class ArticleType extends AbstractType
             ])
             ->add('transport')
             ->add('distance')
+            ->add('author', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'id',
+            ])
         ;
     }
 

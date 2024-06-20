@@ -33,6 +33,7 @@ class AppFixtures extends Fixture
 
         $categories = [];
         $transports = [];
+        $adminUsers = [];
 
         foreach (self::CATEGORIES as $categoryName) {
             $category = new Category();
@@ -52,6 +53,29 @@ class AppFixtures extends Fixture
           $transports[] = $transport;
       }
 
+      $ordinaryUser = new User();
+        $ordinaryUser
+          ->setEmail('testordinaryuser@illay.com')
+          ->setPassword($this->hasher->hashPassword($ordinaryUser, 'ordinary'));
+      
+        $manager->persist($ordinaryUser);
+      
+        $adminUser1 = new User();
+        $adminUser1
+          ->setEmail('admin1@illay.com')
+          ->setRoles(['ROLE_ADMIN'])
+          ->setPassword($this->hasher->hashPassword($adminUser1, 'admin'));
+          $manager->persist($adminUser1);
+          $adminUsers[] = $adminUser1;
+      
+        $adminUser2 = new User();
+        $adminUser2
+          ->setEmail('admin2@illay.com')
+          ->setRoles(['ROLE_ADMIN'])
+          ->setPassword($this->hasher->hashPassword($adminUser2, 'admin'));
+          $manager->persist($adminUser2);
+          $adminUsers[] = $adminUser2;
+      
         for ($i = 0; $i < self::NB_ARTICLES; $i++) 
         {
             $article = new Article();
@@ -63,25 +87,11 @@ class AppFixtures extends Fixture
                 ->setCategory($faker->randomElement($categories)) //Obligatoire pour ajouter un ID aléatoire dans ma table 
                 ->setImageUrl('image' . ($i % 9) . '.jpg') // Chemin de l'image
                 ->setTransport($faker->randomElement($transports))
-                ->setDistance($faker->randomFloat(2, 10, 10000));
+                ->setDistance($faker->randomFloat(2, 10, 10000))
+                ->setAuthor($faker->randomElement($adminUsers));
 
             $manager->persist($article);
         }
-
-        $ordinaryUser = new User();
-        $ordinaryUser
-          ->setEmail('testordinaryuser@illay.com')
-          ->setPassword($this->hasher->hashPassword($ordinaryUser, 'ordinary'));
-      
-        $manager->persist($ordinaryUser);
-      
-        $adminUser = new User();
-        $adminUser
-          ->setEmail('admin@illay.com')
-          ->setRoles(['ROLE_ADMIN'])
-          ->setPassword($this->hasher->hashPassword($adminUser, 'admin'));
-      
-        $manager->persist($adminUser);
 
         $manager->flush();
     }
