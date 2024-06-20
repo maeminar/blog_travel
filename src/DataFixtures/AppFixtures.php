@@ -54,7 +54,7 @@ class AppFixtures extends Fixture
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-6 years')))
                 ->setVisible($faker->boolean(90))
                 ->setCategory($faker->randomElement($categories)) //Obligatoire pour ajouter un ID aléatoire dans ma table 
-                ->setImageUrl('/uploads/images/image' . ($i % 9) . '.jpg') // Chemin de l'image
+                ->setImageUrl('image' . ($i % 9) . '.jpg') // Chemin de l'image
                 ->setTransport($faker->randomElement($transports))
                 ->setDistance($faker->randomFloat(2, 10, 10000));
 

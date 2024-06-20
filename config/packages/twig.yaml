@@ -1,5 +1,7 @@
 twig:
     file_name_pattern: '*.twig'
+    globals:
+        img_upload_dir: '%app.upload_dir%'
 
 when@test:
     twig:

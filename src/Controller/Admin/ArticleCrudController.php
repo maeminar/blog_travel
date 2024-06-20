@@ -31,9 +31,8 @@ class ArticleCrudController extends AbstractCrudController
             BooleanField::new('visible'),
             ImageField::new('imageUrl')
                 ->setUploadDir('public/uploads/images/') 
-                ->setBasePath('/uploads/images/')
-                ->setUploadedFileNamePattern('uploads/images/'),
-            AssociationField::new('transport')->autocomplete(),
+                ->setBasePath('/uploads/images/'),
+            AssociationField::new('transport'),
             IntegerField::new('distance'),
             AssociationField::new('Category')->autocomplete()
         ];

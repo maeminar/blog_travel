@@ -30,15 +30,15 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $Category = null;
 
-    #[ORM\ManyToOne(targetEntity: Transport::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private $Transport;
-
     #[ORM\Column(length: 255)]
     private $imageUrl;
 
     #[ORM\Column]
     private ?int $distance = null;
+
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Transport $transport = null;
 
     public function getId(): ?int
     {
@@ -137,23 +137,14 @@ class Article
         return $this;
     }
 
-
-    /**
-     * Get the value of Transport
-     */ 
     public function getTransport(): ?Transport
     {
-        return $this->Transport;
+        return $this->transport;
     }
 
-    /**
-     * Set the value of Transport
-     *
-     * @return  self
-     */ 
-    public function setTransport(?Transport $transport): self
+    public function setTransport(?Transport $transport): static
     {
-        $this->Transport = $transport;
+        $this->transport = $transport;
 
         return $this;
     }

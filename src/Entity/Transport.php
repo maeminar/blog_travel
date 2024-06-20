@@ -16,15 +16,23 @@ class Transport
     private ?int $id = null;
 
     /**
-     * @var Collection<int, article>
+     * @var Collection<int, Article>
      */
-    #[ORM\OneToMany(targetEntity: article::class, mappedBy: 'transport')]
-    private Collection $name;
+    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'transport')]
+    private Collection $articles;
+
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
 
     public function __construct()
     {
-        $this->name = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
+
+    public function __toString() : string
+  {
+    return $this->name;
+  }
 
     public function getId(): ?int
     {
@@ -32,41 +40,41 @@ class Transport
     }
 
     /**
-     * @return Collection<int, article>
+     * @return Collection<int, Article>
      */
-    public function getName(): Collection
+    public function getArticles(): Collection
     {
-        return $this->name;
+        return $this->articles;
     }
 
-    public function addName(article $name): static
+    public function addArticle(Article $article): static
     {
-        if (!$this->name->contains($name)) {
-            $this->name->add($name);
-            $name->setTransport($this);
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+            $article->setTransport($this);
         }
 
         return $this;
     }
 
-    public function removeName(article $name): static
+    public function removeArticle(Article $article): static
     {
-        if ($this->name->removeElement($name)) {
+        if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($name->getTransport() === $this) {
-                $name->setTransport(null);
+            if ($article->getTransport() === $this) {
+                $article->setTransport(null);
             }
         }
 
         return $this;
     }
 
-    /**
-     * Set the value of name
-     *
-     * @return  self
-     */ 
-    public function setName($name)
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
     {
         $this->name = $name;
 
