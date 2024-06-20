@@ -24,6 +24,9 @@ class Transport
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column(type: 'integer')]
+    private ?int $emissionFactor = null; //en g par CO2/km
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -77,6 +80,26 @@ class Transport
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of emissionFactor
+     */ 
+    public function getEmissionFactor()
+    {
+        return $this->emissionFactor;
+    }
+
+    /**
+     * Set the value of emissionFactor
+     *
+     * @return  self
+     */ 
+    public function setEmissionFactor($emissionFactor)
+    {
+        $this->emissionFactor = $emissionFactor;
 
         return $this;
     }

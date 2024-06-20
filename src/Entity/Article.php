@@ -148,4 +148,13 @@ class Article
 
         return $this;
     }
+
+    public function calculateCarbon(): ?float //Fonction pour calculer l'empreinte carbone
+    {
+        if ($this->transport && $this->distance) {
+            return $this->transport->getEmissionFactor() * $this->distance;
+        }
+        return null;
+    }
+
 }

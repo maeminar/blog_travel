@@ -39,7 +39,9 @@ class AppFixtures extends Fixture
 
         foreach (self::TRANSPORTS as $transportName) {
           $transport = new Transport();
-          $transport->setName($transportName);
+          $transport
+              ->setName($transportName)
+              ->setEmissionFactor($faker->randomFloat(2, 50, 100)); // Facteur d'émission aléatoire entre 50 et 100
 
           $manager->persist($transport);
           $transports[] = $transport;
@@ -49,8 +51,8 @@ class AppFixtures extends Fixture
         {
             $article = new Article();
             $article
-                ->setName($faker->words($faker->numberBetween(15, 25), true))
-                ->setContent($faker->realTextBetween(1200, 2500))
+                ->setName($faker->words($faker->numberBetween(15, 17), true))
+                ->setContent($faker->realTextBetween(300, 700))
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-6 years')))
                 ->setVisible($faker->boolean(90))
                 ->setCategory($faker->randomElement($categories)) //Obligatoire pour ajouter un ID aléatoire dans ma table 
