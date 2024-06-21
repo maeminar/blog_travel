@@ -32,7 +32,6 @@ class ArticleCrudController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($article);
             $entityManager->flush();
-       
             return $this->redirectToRoute('app_article_crud_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -41,8 +41,15 @@
         </div>
 
         <p class="text-gray-500 text-sm mt-4">Publié le {{ article.createdAt|date('d/m/Y') }}</p>
+
+        <ul>
+            {# {% for comment in comments %}
+                <li>{{ comment.content }}</li>
+            {% endfor %} #}
+        </ul>
+    
       </div>
-    {% endfor %}
+ {% endfor %}
   </div>
 </div>
 {% endblock %}

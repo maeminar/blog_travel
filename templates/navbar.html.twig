@@ -1,11 +1,8 @@
-<nav class="flex items-center justify-between bg-gray-900 py-3">
+<nav class="flex items-center justify-between bg-gray-900 py-3 fixed top-0 left-0 right-0 z-10">
+    <img src="{{ asset('images/logo_planete.png') }}" alt="Logo planete" class="h-8 w-auto ml-4">
 
-    <img src="{{ asset('images/logo_planete.png') }}" alt="Logo de votre site" class="h-8 w-auto ml-4">
-
- 
     <a href="{{ path('app_index') }}" class="text-white text-2xl font-bold uppercase">Illay travel</a>
 
- 
     <ul class="flex flex-col md:flex-row items-center gap-4 md:gap-8 md:ml-auto text-white">
         <li class="mx-4">
             <a href="{{ path('app_index') }}" class="hover:text-gray-300">Accueil</a>
@@ -17,11 +14,10 @@
             <a href="{{ path('categories_list_cat') }}" class="hover:text-gray-300">Catégories</a>
         </li>
         {% if app.user %}
-        <li><a href="{{ path('profile') }}">{{ app.user.email }}</a></li>
-        <li><a class="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-lg transition duration-300" href="{{ path('app_logout') }}">Logout</a></li>
+            <li><a href="{{ path('profile') }}">{{ app.user.email }}</a></li>
+            <li><a class="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-lg transition duration-300" href="{{ path('app_logout') }}">Logout</a></li>
         {% else %}
-        <li><a class="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-lg transition duration-300" href="{{ path('app_login') }}">Login</a></li>
+            <li><a class="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-lg transition duration-300" href="{{ path('app_login') }}">Login</a></li>
         {% endif %}
-
     </ul>
 </nav>

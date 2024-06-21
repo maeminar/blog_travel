@@ -4,16 +4,15 @@
 
 {% block body %}
 
-    {% if app.user %}
-        <div class="bg-black text-white px-4 py-2 text-center top-0 left-0 right-0 z-50">
-            <p>Bienvenue {{ app.user.userIdentifier }} vous êtes connecté(e) ! Vous pouvez dorénavant ajouter, modifier et supprimer des articles (en ajoutant /admin à l'URL 😉)</p>
-        </div>
-    {% endif %}
-
     <div class="bg-cover bg-center bg-no-repeat min-h-screen" style="background-image: url('{{ asset('images/accueil.png') }}');">
         <div class="flex items-center justify-center h-full pt-16"> <!-- Utilisation de padding top pour centrer le contenu -->
             <div class="text-white text-center shadow-lg p-8 mx-4 bg-gray-800 bg-opacity-50 rounded-lg"> <!-- Ajout de rounded-lg pour arrondir les coins -->
-                <h1 class="text-4xl font-bold mb-4">Bienvenue sur notre blog de voyage collaboratif</h1>
+                <h1 class="text-4xl font-bold mb-4">Bienvenue sur notre blog de voyage collaboratif</h1>        
+    {% if app.user %}
+        <div class="bg-black text-white px-4 py-2 text-center top-20 left-0 right-0 z-50">
+            <p>Bienvenue {{ app.user.userIdentifier }} vous êtes connecté(e) ! Vous pouvez dorénavant ajouter, modifier et supprimer des articles (en ajoutant /admin à l'URL 😉)</p>
+        </div>
+    {% endif %}
                 <p class="text-lg mb-8">Explorez les merveilles du monde à travers nos récits de voyage inspirants et informatifs. Que vous rêviez de plages exotiques, de montagnes majestueuses ou de villes animées, notre blog vous offre une fenêtre sur les destinations les plus captivantes de la planète.</p>
                 <a href="{{ path('app_articles') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Commencer à explorer ⏩</a> <br> <br>
                 
@@ -29,5 +28,6 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
 
