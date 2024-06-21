@@ -35,7 +35,7 @@ class ArticleCrudController extends AbstractCrudController
             AssociationField::new('transport'),
             IntegerField::new('distance'),
             AssociationField::new('Category')->autocomplete(),
-            AssociationField::new('author'),
+            // AssociationField::new('author'),
         ];
     }
 

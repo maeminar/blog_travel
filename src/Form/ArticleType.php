@@ -28,10 +28,10 @@ class ArticleType extends AbstractType
             ])
             ->add('transport')
             ->add('distance')
-            ->add('author', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
+            // ->add('author', EntityType::class, [
+            //     'class' => User::class,
+            //     'choice_label' => 'id',
+            // ])
         ;
     }
 

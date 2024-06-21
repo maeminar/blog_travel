@@ -87,8 +87,8 @@ class AppFixtures extends Fixture
                 ->setCategory($faker->randomElement($categories)) //Obligatoire pour ajouter un ID aléatoire dans ma table 
                 ->setImageUrl('image' . ($i % 9) . '.jpg') // Chemin de l'image
                 ->setTransport($faker->randomElement($transports))
-                ->setDistance($faker->randomFloat(2, 10, 10000))
-                ->setAuthor($faker->randomElement($adminUsers));
+                ->setDistance($faker->randomFloat(2, 10, 10000));
+                // ->setAuthor($faker->randomElement($adminUsers));
 
             $manager->persist($article);
         }
