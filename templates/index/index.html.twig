@@ -1,26 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog de Voyage Mondial{% endblock %}
+{% block title %}Blog de Voyage écolo{% endblock %}
 
 {% block body %}
-<div class="bg-cover bg-center bg-no-repeat min-h-screen" style="background-image: url('{{ asset('images/accueil.png') }}');">
-    <div class="flex items-center justify-center h-full pt-16"> <!-- Ajout de padding top -->
-        <div class="text-white text-center shadow-lg p-8 mx-4 bg-gray-800 bg-opacity-50 rounded-lg"> <!-- Ajout de rounded-lg pour arrondir les coins -->
-            <h1 class="text-4xl font-bold mb-4">Bienvenue sur notre blog de voyage collaboratif</h1>
-            <p class="text-lg mb-8">Explorez les merveilles du monde à travers nos récits de voyage inspirants et informatifs. Que vous rêviez de plages exotiques, de montagnes majestueuses ou de villes animées, notre blog vous offre une fenêtre sur les destinations les plus captivantes de la planète.</p>
-            <a href="{{ path('app_articles') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Commencer à explorer ⏩</a> <br> <br>
-            
-            <div class="bg-red-500 bg-opacity-75 text-white rounded-lg p-6 mb-8">
-                <h2 class="text-2xl font-bold mb-4">Combien polluons-nous lorsque nous voyageons ?</h2>
-                <p>Le vélo : 0 g CO2/km !</p>
-                <p>Le bateau : environ 200 g CO2/km par passager.</p>
-                <p>L'avion : environ 255 g CO2/km par passager.</p>
-                <p>La voiture : 180 g CO2/km par passager.</p>
+
+    {% if app.user %}
+        <div class="bg-black text-white px-4 py-2 text-center top-0 left-0 right-0 z-50">
+            <p>Bienvenue {{ app.user.userIdentifier }} vous êtes connecté(e) ! Vous pouvez dorénavant ajouter, modifier et supprimer des articles (en ajoutant /admin à l'URL 😉)</p>
+        </div>
+    {% endif %}
+
+    <div class="bg-cover bg-center bg-no-repeat min-h-screen" style="background-image: url('{{ asset('images/accueil.png') }}');">
+        <div class="flex items-center justify-center h-full pt-16"> <!-- Utilisation de padding top pour centrer le contenu -->
+            <div class="text-white text-center shadow-lg p-8 mx-4 bg-gray-800 bg-opacity-50 rounded-lg"> <!-- Ajout de rounded-lg pour arrondir les coins -->
+                <h1 class="text-4xl font-bold mb-4">Bienvenue sur notre blog de voyage collaboratif</h1>
+                <p class="text-lg mb-8">Explorez les merveilles du monde à travers nos récits de voyage inspirants et informatifs. Que vous rêviez de plages exotiques, de montagnes majestueuses ou de villes animées, notre blog vous offre une fenêtre sur les destinations les plus captivantes de la planète.</p>
+                <a href="{{ path('app_articles') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Commencer à explorer ⏩</a> <br> <br>
+                
+                <div class="bg-red-500 bg-opacity-75 text-white rounded-lg p-6 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Combien polluons-nous lorsque nous voyageons ?</h2>
+                    <p>Le vélo : 0 g CO2/km !</p>
+                    <p>Le bateau : environ 200 g CO2/km par passager.</p>
+                    <p>L'avion : environ 255 g CO2/km par passager.</p>
+                    <p>La voiture : 180 g CO2/km par passager.</p>
+                </div>
+                
+                <p class="text-lg mb-8">Ce blog de voyages est collaboratif. <br> Autrement dit, il vous suffit de vous créer un compte afin de pouvoir ajouter vos expériences de voyage. De plus, découvrez notre calculateur d'empreinte carbone intégré, conçu pour vous aider à voyager de manière plus durable et à réduire votre impact sur l'environnement. Entrez simplement vos détails de voyage et découvrez comment vous pouvez minimiser votre empreinte carbone tout en explorant le monde.</p>
             </div>
-            
-            <p class="text-lg mb-8">Ce blog de voyages est collaboratif. <br> Autrement dit, il vous suffit de vous créer un compte afin de pouvoir ajouter vos expériences de voyage. De plus, découvrez notre calculateur d'empreinte carbone intégré, conçu pour vous aider à voyager de manière plus durable et à réduire votre impact sur l'environnement. Entrez simplement vos détails de voyage et découvrez comment vous pouvez minimiser votre empreinte carbone tout en explorant le monde.</p>
-            <a href="{{ path('app_login') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Se connecter</a>
         </div>
     </div>
-</div>
 {% endblock %}
+
