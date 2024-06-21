@@ -40,6 +40,10 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private ?Transport $transport = null;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Author $author = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,6 +153,17 @@ class Article
         return $this;
     }
 
+    public function getAuthor(): ?Author
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?Author $author): static
+    {
+        $this->author = $author;
+
+        return $this;
+    }
     public function calculateCarbon(): ?float //Fonction pour calculer l'empreinte carbone
     {
         if ($this->transport && $this->distance) {
@@ -156,5 +171,4 @@ class Article
         }
         return null;
     }
-
 }

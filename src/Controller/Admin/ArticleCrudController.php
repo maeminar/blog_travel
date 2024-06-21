@@ -34,7 +34,8 @@ class ArticleCrudController extends AbstractCrudController
                 ->setBasePath('/uploads/images/'),
             AssociationField::new('transport'),
             IntegerField::new('distance'),
-            AssociationField::new('Category')->autocomplete()
+            AssociationField::new('Category')->autocomplete(),
+            AssociationField::new('author')->autocomplete(),
         ];
     }
 

@@ -16,8 +16,12 @@
         <li class="mx-4">
             <a href="{{ path('categories_list_cat') }}" class="hover:text-gray-300">Catégories</a>
         </li>
-        <li class="mx-4">
-            <a href="{{ path('app_login') }}" class="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-lg transition duration-300">Connexion</a>
-        </li>
+        {% if app.user %}
+        <li><a href="{{ path('profile') }}">{{ app.user.email }}</a></li>
+        <li><a class="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-lg transition duration-300" href="{{ path('app_logout') }}">Logout</a></li>
+        {% else %}
+        <li><a class="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-lg transition duration-300" href="{{ path('app_login') }}">Login</a></li>
+        {% endif %}
+
     </ul>
 </nav>

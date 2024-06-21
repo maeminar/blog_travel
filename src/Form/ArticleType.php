@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Author;
 use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -27,7 +28,10 @@ class ArticleType extends AbstractType
             ])
             ->add('transport')
             ->add('distance')
-        ;
+            ->add('author', EntityType::class, [
+                'class' => Author::class,
+                'choice_label' => 'id',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
