@@ -8,15 +8,16 @@
     <h1 class="text-4xl font-bold text-gray-800 my-8">🌏 Tous les articles 🌏</h1>
   </div>
 
-  <div class="grid gap-8 md:grid-cols-2 max-w-screen-lg mx-auto px-4">
+  <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto px-4">
     {% for article in articles %}
       <div class="bg-white rounded-lg shadow-lg p-6">
-        <p class="text-gray-500 text-sm mb-2">Catégorie : <span class="text-blue-600 font-medium">{{ article.category.name }}</span></p>
+        <p class="text-gray-500 text-sm mb-2">Catégorie : <span class="text-green-600 font-medium">{{ article.category.name }}</span></p>
         {% if article.imageUrl %}
           <img src="{{ img_upload_dir ~ article.imageUrl }}" alt="Image de {{ article.name }}" class="w-full h-auto rounded-lg mb-4">
         {% endif %}
-        <p class="text-gray-500 text-m-l mt-4">Article rédigé par : {{article.author}}</p>
+        <p class="text-gray-500 text-m-l mt-4">Article rédigé par : {{ article.author }}</p>
         <h2 class="text-xl lg:text-2xl font-semibold text-center mb-4">{{ article.name }}</h2>
+        <p class="text-gray-500 text-sm mt-4">Article publié le {{ article.createdAt|date('d/m/Y') }}</p>
         <p class="text-gray-700 mt-2 mb-4">{{ article.content }}</p>
 
         <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
@@ -30,26 +31,32 @@
             Distance parcourue : {{ article.distance }} km. <br>
           </p>
           {% if article.calculateCarbon() > 1 %}
-          <p class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg m-7">
-          Empreinte carbone : {{ article.calculateCarbon() }} g de CO2 😲
-          </p>
+            <p class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg mt-2">
+              Empreinte carbone : {{ article.calculateCarbon() }} g de CO2 😲
+            </p>
           {% else %}
-          <p class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg m-7">
-          Empreinte carbone : {{ article.calculateCarbon() }} g de CO2 ✔️
-          </p>
+            <p class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg mt-2">
+              Empreinte carbone : {{ article.calculateCarbon() }} g de CO2 ✔️
+            </p>
           {% endif %}
         </div>
 
-        <p class="text-gray-500 text-sm mt-4">Publié le {{ article.createdAt|date('d/m/Y') }}</p>
-
-        <ul>
-            {# {% for comment in comments %}
-                <li>{{ comment.content }}</li>
-            {% endfor %} #}
-        </ul>
-    
+        <div class="mt-6">
+          <h3 class="text-xl font-semibold mb-2">Commentaires</h3>
+          {% if article.getComments()|length > 0 %}
+            <ul class="list-disc list-inside">
+              {% for comment in article.getComments() %}
+                <li class="text-gray-700">{{ comment.getContent() }}</li>
+                <p class="text-sm text-gray-500">Publié le {{ comment.getCreatedAt()|date('d/m/Y') }}</p>
+                <hr class="my-2">
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-gray-500">Aucun commentaire trouvé.</p>
+          {% endif %}
+        </div>
       </div>
- {% endfor %}
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
