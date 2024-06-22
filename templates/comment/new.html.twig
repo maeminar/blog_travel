@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Ajouter un commentaire</button>
-{{ form_end(form) }}
-
+<div class="min-h-screen flex items-center justify-center bg-gray-100 py-12">
+    <div class="bg-white max-w-md w-full p-8 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-semibold mb-4 text-center">Ajouter un commentaire</h3>
+        {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+        <div class="space-y-1">
+            {{ form_row(form.content, {'attr': {'class': 'appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm', 'placeholder': 'Commentaire'}}) }}
+        </div>
+        
+        <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg mt-4 w-full">Ajouter</button>
+        {{ form_end(form) }}
+    </div>
+</div>
 {% endblock %}

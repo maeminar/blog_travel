@@ -14,7 +14,7 @@
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
-{# Si l'utilisateur est déjà connecté alors :  #}
+            {# Si l'utilisateur est déjà connecté alors :  #}
             {% if app.user %}
                 <div>
                     Tu es déjà connecté(e) {{ app.user.userIdentifier }} <br> <br><a href="{{ path('app_logout') }}" class="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-lg transition duration-300">Logout</a>

@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block body %}
-    <h1>Profile</h1>
-    <p>Email: {{ app.user.email }}</p>
-    <p>Username: {{ app.user.username }}</p>
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-12">
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold mb-4">Profil 👤</h1>
+        <p class="text-lg">Email: {{ app.user.getEmail() }}</p>
+    </div>
+</div>
 {% endblock %}

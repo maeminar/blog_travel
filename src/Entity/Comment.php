@@ -28,6 +28,7 @@ class Comment
         return $this->id;
     }
 
+
     public function getContent(): ?string
     {
         return $this->content;
@@ -60,6 +61,18 @@ class Comment
     public function setArticles(?Article $articles): static
     {
         $this->articles = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }
